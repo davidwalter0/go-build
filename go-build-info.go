@@ -5,12 +5,17 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"reflect"
 	"runtime"
 
 	"github.com/fatih/color"
 )
 
+type Empty struct{}
+
 func init() {
+	fmt.Println(reflect.TypeOf(Empty{}).PkgPath())
+	fmt.Println(reflect.TypeOf(lmath.Vec3{0, 0, 0}).PkgPath())
 	buildInfo()
 }
 
