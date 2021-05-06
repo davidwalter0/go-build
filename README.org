@@ -1,0 +1,79 @@
+* go-build-info
+  enable with an include and use the helper go-build-info to run go
+  build and go install commands to inject the builds environment
+
+
+  #+begin_src go :results verbatim
+    package main
+
+    import (
+            "fmt"
+            "os"
+
+            "github.com/davidwalter0/go-build"
+    )
+
+    func init() {
+            fmt.Fprintf(os.Stderr, "\nBuildinfo for %s\n\n", os.Args[0])
+            build.BuildInfo()
+    }
+    func main() {
+    }
+
+  #+end_src
+
+  #+begin_src bash  :results verbatim :shebang #!/usr/bin/env bash :mkdirp yes :comments org :padline yes :tanglemode 0755
+    cd cmd/example
+    go-build-info go build 
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+
+  Hash     Commit Time                      Tag         
+  Tagged   03bf7ade1df677f3b54d5ff902f0a662 v0.0.1       2021-05-06 20:04:34  v0.0.1-2021050620-03bf7ade1df6
+  Untagged cc88f8e4024200ba36b2a219da7cd086              2021-05-06 20:16:48  v0.0.0-2021050620-cc88f8e40242
+  Untagged cc88f8e4024200ba36b2a219da7cd086              2021-05-06 20:16:48 
+  cc88f8e4024200ba36b2a219da7cd08625474faa  true 2021.05.06.20.16.48.-0400 2021.05.06.20.29.39.-0400
+  BUILD_INFO_GIT_COMMIT_DATE       2021.05.06.20.16.48.-0400
+  BUILD_INFO_GIT_REVISION          cc88f8e-dirty
+  BUILD_INFO_GIT_VERSION           cc88f8e4024200ba36b2a219da7cd08625474faa
+  BUILD_INFO_GO_ARCH_BUILT_ON      amd64
+  BUILD_INFO_GO_ARCH_BUILT_FOR     amd64
+  BUILD_INFO_GO_BUILT_DATE         2021.05.06.20.29.39.-0400
+  BUILD_INFO_GO_COMPILER           gc
+  BUILD_INFO_GO_OS_BUILT_ON        darwin
+  BUILD_INFO_GO_OS_BUILT_FOR       darwin
+  BUILD_INFO_GO_RACE_DETECTOR      false
+  BUILD_INFO_GO_VERSION            go1.16.2
+  #+end_example
+
+  #+begin_src bash  :results verbatim :shebang #!/usr/bin/env bash :mkdirp yes :comments org :padline yes :tanglemode 0755
+    cd cmd/example
+    ls -l
+    ./build-info-example 2>&1
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  total 2068
+  -rwxr-xr-x 1 dwalte022 staff 2103456 May  6 20:29 build-info-example
+  -rw-r--r-- 1 dwalte022 staff     100 May  6 20:09 go.mod
+  -rw-r--r-- 1 dwalte022 staff    1012 May  6 20:09 go.sum
+  -rw-r--r-- 1 dwalte022 staff     189 May  6 20:26 main.go
+
+  Buildinfo for ./build-info-example
+
+  Git Commit Date  : 2021.05.06.20.16.48.-0400
+  Git Revision     : cc88f8e4024200ba36b2a219da7cd08625474faa
+  Git Version      : cc88f8e-dirty
+  Go Build ARCH    : amd64
+  Go Build OS      : darwin
+  Go Build Date    : 2021.05.06.20.29.39.-0400
+  Go ARCH          : amd64
+  Go Build Date    : 2021.05.06.20.29.39.-0400
+  Go Compiler      : gc
+  Go OS            : darwin
+  Go Race Detector : false
+  Go Version       : go1.16.2
+  #+end_example
