@@ -1,6 +1,10 @@
 # github.com/Microsoft/go-winio v0.4.16
 github.com/Microsoft/go-winio
 github.com/Microsoft/go-winio/pkg/guid
+# github.com/abiosoft/ishell v2.0.0+incompatible
+github.com/abiosoft/ishell
+# github.com/abiosoft/readline v0.0.0-20180607040430-155bce2042db
+github.com/abiosoft/readline
 # github.com/emirpasic/gods v1.12.0
 github.com/emirpasic/gods/containers
 github.com/emirpasic/gods/lists
@@ -10,6 +14,8 @@ github.com/emirpasic/gods/trees/binaryheap
 github.com/emirpasic/gods/utils
 # github.com/fatih/color v1.10.0
 github.com/fatih/color
+# github.com/flynn-archive/go-shlex v0.0.0-20150515145356-3f9db97f8568
+github.com/flynn-archive/go-shlex
 # github.com/go-git/gcfg v1.5.0
 github.com/go-git/gcfg
 github.com/go-git/gcfg/scanner
